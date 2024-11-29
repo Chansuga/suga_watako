@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>To-Do アプリ</title>
+</head>
+<body>
+    <h1>To-Do List</h1>
+    <ul>
+        {% for task in tasks %}
+            <li>
+                {{ task.title }} - {% if task.completed %}完了{% else %}未完了{% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+    <form method="post" action="{% url 'add_task' %}">
+        {% csrf_token %}
+        <input type="text" name="title" placeholder="新しいタスクを追加">
+        <button type="submit">追加</button>
+    </form>
+</body>
+</html>
